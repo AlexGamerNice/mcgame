@@ -7,7 +7,7 @@ description: Multiplayer poker style gambling table using chip items.
 commands:
   table:
     description: Join and manage the poker table.
-    usage: /table [leave|start|value|setlocation]
+    usage: /table [leave|start|value|setlocation|reload]
 permissions:
   pokertable.admin:
     description: Allows managing poker table settings.

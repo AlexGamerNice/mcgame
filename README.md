@@ -39,6 +39,7 @@ chips:
 - `/table start` - force start a round (if enough players are seated)
 - `/table value` - shows your current total chip value
 - `/table setlocation` - admin command to set the table join location
+- `/table reload` - admin command to reload config and chip values live
 
 ## Gameplay
 

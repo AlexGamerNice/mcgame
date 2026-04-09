@@ -30,6 +30,12 @@ public class PokerTablePlugin extends JavaPlugin {
         }
     }
 
+    private void reloadPokerConfig() {
+        reloadConfig();
+        loadDefaults();
+        ChipValue.loadFromConfig(getConfig(), getLogger());
+    }
+
     private void loadDefaults() {
         if (!getConfig().isSet("table.small_blind")) {
             getConfig().set("table.small_blind", 16);
@@ -89,6 +95,16 @@ public class PokerTablePlugin extends JavaPlugin {
                 player.sendMessage("Poker table location set to your current position.");
                 return true;
             }
+            case "reload" -> {
+                if (!player.hasPermission("pokertable.admin")) {
+                    player.sendMessage("You do not have permission to reload PokerTable.");
+                    return true;
+                }
+                reloadPokerConfig();
+                pokerTable.setTableLocation(getConfig().getLocation("table.location"));
+                player.sendMessage("PokerTable configuration reloaded.");
+                return true;
+            }
             case "help" -> {
                 sendHelp(player);
                 return true;
@@ -115,6 +131,7 @@ public class PokerTablePlugin extends JavaPlugin {
         lines.add("/table value - show your total chip value");
         if (player.hasPermission("pokertable.admin")) {
             lines.add("/table setlocation - set table join location");
+            lines.add("/table reload - reload plugin config");
         }
         for (String line : lines) {
             player.sendMessage(line);
