@@ -1,0 +1,14 @@
+name: PokerTable
+main: com.mcgame.poker.PokerTablePlugin
+version: 1.0.0
+api-version: "1.21"
+author: Cursor
+description: Multiplayer poker style gambling table using chip items.
+commands:
+  table:
+    description: Join and manage the poker table.
+    usage: /table [leave|start|value|setlocation]
+permissions:
+  pokertable.admin:
+    description: Allows managing poker table settings.
+    default: op
