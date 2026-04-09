@@ -1,0 +1,14 @@
+table:
+  small_blind: 16
+  big_blind: 32
+  min_players: 2
+  # set by /table setlocation
+  # location: {}
+
+chips:
+  iron_ingot: 1
+  gold_ingot: 8
+  emerald: 64
+  diamond: 512
+  netherite_scrap: 2048
+  netherite_ingot: 8192

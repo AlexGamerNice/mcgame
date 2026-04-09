@@ -16,6 +16,7 @@ public class PokerTablePlugin extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         loadDefaults();
+        ChipValue.loadFromConfig(getConfig(), getLogger());
         Location configuredLocation = getConfig().getLocation("table.location");
         pokerTable = new PokerTable(this, configuredLocation);
         getServer().getPluginManager().registerEvents(new TablePlayerListener(pokerTable), this);
@@ -38,6 +39,11 @@ public class PokerTablePlugin extends JavaPlugin {
         }
         if (!getConfig().isSet("table.min_players")) {
             getConfig().set("table.min_players", 2);
+        }
+        for (ChipValue chip : ChipValue.values()) {
+            if (!getConfig().isSet(chip.configPath())) {
+                getConfig().set(chip.configPath(), chip.defaultValue());
+            }
         }
         saveConfig();
     }

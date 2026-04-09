@@ -2,23 +2,35 @@
 
 Paper plugin for Minecraft 1.21.x that adds a multiplayer poker-style gambling table with item-based chips.
 
-## Chip values (fair progression)
+## Chip values (configurable)
 
 No ore blocks are used. Only these chip items count:
 
-- Iron Ingot = `1` credit
-- Gold Ingot = `8` credits
-- Emerald = `64` credits
-- Diamond = `512` credits
-- Netherite Scrap = `2048` credits
-- Netherite Ingot = `8192` credits
+- Iron Ingot = `1` credit (default)
+- Gold Ingot = `8` credits (default)
+- Emerald = `64` credits (default)
+- Diamond = `512` credits (default)
+- Netherite Scrap = `2048` credits (default)
+- Netherite Ingot = `8192` credits (default)
 
-Progression summary:
+Default progression summary:
 - 8 iron = 1 gold
 - 8 gold = 1 emerald
 - 8 emerald = 1 diamond
 - 4 diamonds = 1 netherite scrap
 - 4 scraps = 1 netherite ingot
+
+You can change these in `plugins/PokerTable/config.yml`:
+
+```yml
+chips:
+  iron_ingot: 1
+  gold_ingot: 8
+  emerald: 64
+  diamond: 512
+  netherite_scrap: 2048
+  netherite_ingot: 8192
+```
 
 ## Commands
 
