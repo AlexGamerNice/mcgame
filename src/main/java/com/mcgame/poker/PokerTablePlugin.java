@@ -25,6 +25,9 @@ public class PokerTablePlugin extends JavaPlugin implements TabCompleter {
         Location configuredLocation = getConfig().getLocation("table.location");
         pokerTable = new PokerTable(this, configuredLocation);
         getServer().getPluginManager().registerEvents(new TablePlayerListener(pokerTable), this);
+        if (getCommand("table") != null) {
+            getCommand("table").setTabCompleter(this);
+        }
         getLogger().info("PokerTable enabled.");
     }
 

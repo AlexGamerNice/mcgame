@@ -8,6 +8,7 @@ commands:
   table:
     description: Join and manage the poker table.
     usage: /table [leave|start|value|setlocation|reload]
+    aliases: [pokertable]
 permissions:
   pokertable.admin:
     description: Allows managing poker table settings.

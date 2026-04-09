@@ -45,10 +45,21 @@ chips:
 
 - Supports multiple players at one table (minimum 2, maximum 8)
 - Uses blinds (default small blind 16, big blind 32 credits)
+- Real turn-based action menu in a chest GUI (works with Java chest inventory UIs)
+  - Fold
+  - Check / Call
+  - Raise with adjustable amount buttons then confirm
+  - Turn timeout auto-fold to keep rounds moving
+  - Closing the action menu on your turn folds your hand
 - Deals Texas Hold'em style cards:
   - 2 private cards per player
   - 5 community cards
-- Best 5-card hand from 7 cards wins the pot
+- Betting rounds:
+  - Pre-flop
+  - Flop
+  - Turn
+  - River
+- Best 5-card hand from 7 cards wins at showdown
 - Split pot on exact hand ties
 - Players that disconnect are automatically removed from the table
 
