@@ -3,13 +3,18 @@ package com.mcgame.poker;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
-public class PokerTablePlugin extends JavaPlugin {
+public class PokerTablePlugin extends JavaPlugin implements TabCompleter {
+    private static final List<String> PLAYER_SUBCOMMANDS = List.of("leave", "start", "value", "help");
+    private static final List<String> ADMIN_SUBCOMMANDS = List.of("setlocation", "reload");
     private PokerTable pokerTable;
 
     @Override
@@ -154,4 +159,31 @@ public class PokerTablePlugin extends JavaPlugin {
         return Math.max(2, getConfig().getInt("table.min_players", 2));
     }
 
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (!command.getName().equalsIgnoreCase("table")) {
+            return Collections.emptyList();
+        }
+        if (!(sender instanceof Player player)) {
+            return Collections.emptyList();
+        }
+        if (args.length != 1) {
+            return Collections.emptyList();
+        }
+
+        String partial = args[0].toLowerCase(Locale.ROOT);
+        List<String> options = new ArrayList<>(PLAYER_SUBCOMMANDS);
+        if (player.hasPermission("pokertable.admin")) {
+            options.addAll(ADMIN_SUBCOMMANDS);
+        }
+
+        List<String> matches = new ArrayList<>();
+        for (String option : options) {
+            if (option.startsWith(partial)) {
+                matches.add(option);
+            }
+        }
+        matches.sort(String::compareTo);
+        return matches;
+    }
 }
